@@ -15,6 +15,7 @@
 int64_t returnNthPrime(int64_t nTh)
 {
 	int64_t arraySize = 1.3f * nTh * std::log(nTh);
+	if(nTh < 10) arraySize = 100; // For the safe side
 	BitMap array(arraySize); // The boss
 	for(int64_t i = 2; i < arraySize; ++i) array.setValue(i, BitMap::ON);
 	int64_t limit = std::sqrt(arraySize) + 1;
@@ -39,7 +40,7 @@ int64_t returnNthPrime(int64_t nTh)
 			if(primes == nTh) return i;
 		}
 	}
-	return -1;
+	return -1; // Hmm?
 }
 
 #endif /* SIEVE_HPP_ */
