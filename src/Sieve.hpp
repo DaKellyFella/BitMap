@@ -32,15 +32,20 @@ int64_t returnNthPrime(int64_t nTh)
 		}
 	}
 	int64_t primes = 0;
+	int64_t nthPrime = 0;
 	for(int64_t i = 2; i < arraySize; ++i)
 	{
 		if(array.getValue(i))
 		{
 			++primes;
-			if(primes == nTh) return i;
+			if(primes == nTh)
+			{
+				nthPrime = i;
+				break;
+			}
 		}
 	}
-	return -1; // Hmm?
+	return nthPrime;
 }
 
 #endif /* SIEVE_HPP_ */

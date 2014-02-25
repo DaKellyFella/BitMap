@@ -30,12 +30,12 @@ public:
 		size = inSize / (sizeof(uint8_t) * 8); // Considering using a shift by 3 here.
 		if((inSize & ((sizeof(uint8_t) * 8) - 1)) != 0) ++size; // Not a multiple of 8
 		array = new uint8_t[size];
-		for(uint64_t i = 0; i < size; ++i) array[i] = 0;
+		for(uint64_t i = 0; i < size; ++i) array[i] = OFF;
 	}
 
 	inline bool getValue(int64_t inIndex) const
 	{
-		uint64_t realIndex = inIndex / (sizeof(uint8_t) * 8);
+		uint64_t realIndex = inIndex / (sizeof(uint8_t) * 8); // Potentially a left shift by 3
 		uint8_t shiftOffset = inIndex & ((sizeof(uint8_t) * 8) - 1);
 		uint8_t mask = 1 << shiftOffset;
 		return (array[realIndex] & mask) != OFF; // A non-zero result means its set
