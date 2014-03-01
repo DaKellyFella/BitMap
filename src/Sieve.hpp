@@ -9,25 +9,25 @@
 #define SIEVE_HPP_
 
 #include <cmath>
-#include "BitMap.hpp"
+#include "BitVector.hpp"
 
 // A prime finding technique for finding primes.
 int64_t returnNthPrime(int64_t nTh)
 {
 	int64_t arraySize = 1.3f * nTh * std::log(nTh);
 	if(nTh < 10) arraySize = 100; // For the safe side
-	BitMap array(arraySize); // The boss
-	for(int64_t i = 2; i < arraySize; ++i) array.setValue(i, BitMap::ON);
+	BitVector array(arraySize); // The boss
+	for(int64_t i = 2; i < arraySize; ++i) array.setValue(i, BitVector::ON);
 	int64_t limit = std::sqrt(arraySize) + 1;
-	array.setValue(0, BitMap::OFF);
-	array.setValue(1, BitMap::OFF);
+	array.setValue(0, BitVector::OFF);
+	array.setValue(1, BitVector::OFF);
 	for(int64_t i = 2; i < limit; ++i)
 	{
 		if(array.getValue(i))
 		{
 			for(int64_t j = i + i; j < arraySize; j += i)
 			{
-				array.setValue(j, BitMap::OFF);
+				array.setValue(j, BitVector::OFF);
 			}
 		}
 	}

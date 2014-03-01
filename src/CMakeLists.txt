@@ -1,4 +1,4 @@
-project(BitMap)
+project(BitVector)
 cmake_minimum_required(VERSION 2.8)
 if(MSVC)
     # Force to always compile with W4
@@ -24,10 +24,8 @@ else()
     message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
 endif()
 
-find_package (Threads)
 
 aux_source_directory(. SRC_LIST)
 
 add_executable(${PROJECT_NAME} ${SRC_LIST})
-TARGET_LINK_LIBRARIES(${PROJECT_NAME}
-                    ${CMAKE_THREAD_LIBS_INIT})
+TARGET_LINK_LIBRARIES(${PROJECT_NAME})
